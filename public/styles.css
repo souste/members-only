@@ -1,15 +1,15 @@
-.signup-form {
+.form {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
-.signup-form > input {
+.form > input {
   margin-top: 10px;
   width: 300px;
 }
 
-.signup-form > button {
+.form > button {
   margin-top: 10px;
   width: 100px;
 }

@@ -19,10 +19,12 @@ app.use(express.static(assetsPath));
 
 const indexRoutes = require("./routes/indexRoutes");
 const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/userRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 
 app.use("/", indexRoutes);
 app.use("/auth", authRoutes);
+app.use("/user", userRoutes);
 app.use("/message", messageRoutes);
 
 const PORT = process.env.PORT || 3000;
