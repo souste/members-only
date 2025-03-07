@@ -5,6 +5,5 @@ const messageController = require("../controllers/messageController");
 const authController = require("../controllers/authController");
 
 router.get("/", messageController.getAllMessages);
-router.get("/sign-up", authController.getSignUpForm);
 
 module.exports = router;
