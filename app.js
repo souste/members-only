@@ -5,6 +5,8 @@ const session = require("express-session");
 require("dotenv").config();
 const LocalStrategy = require("passport-local").Strategy;
 const pool = require("./db/pool");
+const flash = require("express-flash");
+const bcrypt = require("bcryptjs");
 
 const app = express();
 
@@ -13,7 +15,15 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
 app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false }));
+app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.messages = req.flash();
+  res.locals.user = req.user;
+  next();
+});
 
 const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));
@@ -27,7 +37,8 @@ passport.use(
       if (!user) {
         return done(null, false, { message: "Incorrect username" });
       }
-      if (user.password !== password) {
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
         return done(null, false, { message: "Incorrect Password" });
       }
       return done(null, user);

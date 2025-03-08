@@ -1,7 +1,13 @@
 const messages = "This is just a placeholder so far!";
 
 const getAllMessages = (req, res) => {
-  res.render("index", { messages });
+  try {
+    // const messages = await pool.query("SELECT * FROM messages");
+    // res.render("index", { messages: messages.rows, user: req.user });
+    res.render("index", { user: req.user, messages });
+  } catch (err) {
+    res.status(500).send("Error fetching messages");
+  }
 };
 
 module.exports = {

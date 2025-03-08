@@ -6,6 +6,10 @@
     <title>Members Home Page</title>
   </head>
   <body>
+    <% if (user) {%>
+    <h1>Welcome Back <%= user.username %></h1>
+    <a href="auth/log-out">Log Out</a>
+    <% } %>
     <h1>Members Home Page</h1>
     <a href="/user/join-the-club">Join the Club</a>
     <p><%= messages %></p>

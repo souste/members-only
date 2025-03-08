@@ -47,8 +47,13 @@ const postNewUser = async (req, res, next) => {
   }
 };
 
+const getLogInForm = (req, res) => {
+  res.render("log-in-form");
+};
+
 module.exports = {
   getSignUpForm,
   validateUser,
   postNewUser,
+  getLogInForm,
 };
