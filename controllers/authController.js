@@ -7,13 +7,13 @@ const getSignUpForm = (req, res) => {
 };
 
 const alphaErr = "must only contain letters";
-const lengthErr = "must be between 1 and 10 characters";
+const lengthErr = "must be between 8 and 10 characters";
 
 const validateUser = [
   body("first_name").trim().isAlpha().withMessage(`First name ${alphaErr}`),
   body("last_name").trim().isAlpha().withMessage(`Last Name ${alphaErr}`),
   body("username").trim().notEmpty().withMessage("Username is required"),
-  body("password").trim().isLength({ min: 6, max: 20 }).withMessage(`Password ${lengthErr}`),
+  body("password").trim().isLength({ min: 8, max: 20 }).withMessage(`Password ${lengthErr}`),
   body("confirm_password")
     .trim()
     .custom((value, { req }) => {
