@@ -34,13 +34,12 @@ const postNewUser = async (req, res, next) => {
   try {
     const { first_name, last_name, username } = req.body;
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const admin = req.body.admin ? true : false;
 
-    await pool.query("INSERT INTO users (first_name, last_name, username, password) VALUES ($1, $2, $3, $4)", [
-      first_name,
-      last_name,
-      username,
-      hashedPassword,
-    ]);
+    await pool.query(
+      "INSERT INTO users (first_name, last_name, username, password, admin) VALUES ($1, $2, $3, $4, $5)",
+      [first_name, last_name, username, hashedPassword, admin]
+    );
     res.redirect("/");
   } catch (err) {
     return next(err);

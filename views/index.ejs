@@ -12,7 +12,7 @@
     <h1>Welcome Back <%= user.username %></h1>
     <p><%= user.username %>'s Membership status = <%= user.membership_status %></p>
     <a href="/user/join-the-club">Join the Club</a>
-    <a href="/auth/log-out">Log Out</a>
+    <!-- <a href="/auth/log-out">Log Out</a> -->
     <a href="/message/create">Create Message</a>
     <% } %>
     <h1>Members Home Page</h1>
@@ -25,6 +25,10 @@
         <small>Posted by <%= messages[i].username %> on <%= messages[i].timestamp %> </small>
         <% } else { %>
         <small>Posted by Anonymous (need to join the club to see) on <%= messages[i].timestamp %> </small>
+        <% } %> <% if (user && user.admin === true ) { %>
+        <form action="/message/<%= messages[i].id %>/delete" method="POST">
+          <button type="submit">Delete</button>
+        </form>
         <% } %>
       </li>
       <% } %>

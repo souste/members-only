@@ -32,8 +32,21 @@ const createMessagePost = async (req, res) => {
   }
 };
 
+const deleteMessage = async (req, res) => {
+  try {
+    if (!req.user || !req.user.admin) return res.status(403).send("Unauthrosized: Admin access required");
+
+    const messageId = req.params.id;
+    await pool.query("DELETE FROM messages WHERE id = $1", [messageId]);
+    res.redirect("/");
+  } catch (error) {
+    res.status(500).send("Error deleting message");
+  }
+};
+
 module.exports = {
   getAllMessages,
   createMessageGet,
   createMessagePost,
+  deleteMessage,
 };
