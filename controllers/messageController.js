@@ -10,6 +10,11 @@ const getAllMessages = (req, res) => {
   }
 };
 
+const createMessageGet = (req, res) => {
+  res.render("create-message-form");
+};
+
 module.exports = {
   getAllMessages,
+  createMessageGet,
 };

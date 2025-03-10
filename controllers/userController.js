@@ -18,7 +18,7 @@ const postSecretCode = async (req, res) => {
       res.redirect("/");
     } else {
       req.flash("error", "Incorrect secret code!");
-      res.redirect("/user/join-the-club");
+      return res.redirect("/user/join-the-club");
     }
   } catch (err) {
     console.error("Error fetching the user");
