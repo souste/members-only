@@ -12,7 +12,11 @@
     <h1>Welcome Back <%= user.username %></h1>
     <p><%= user.username %>'s Membership status = <%= user.membership_status %></p>
     <a href="/user/join-the-club">Join the Club</a>
-    <!-- <a href="/auth/log-out">Log Out</a> -->
+
+    <form action="/auth/log-out" method="POST">
+      <button type="submit">Logout</button>
+    </form>
+
     <a href="/message/create">Create Message</a>
     <% } %>
     <h1>Members Home Page</h1>
