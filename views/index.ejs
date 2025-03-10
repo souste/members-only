@@ -21,7 +21,11 @@
       <li>
         <h3><%= messages[i].title %></h3>
         <p><%= messages[i].content %></p>
+        <% if (user && user.membership_status === true ) { %>
         <small>Posted by <%= messages[i].username %> on <%= messages[i].timestamp %> </small>
+        <% } else { %>
+        <small>Posted by Anonymous (need to join the club to see) on <%= messages[i].timestamp %> </small>
+        <% } %>
       </li>
       <% } %>
     </ul>
