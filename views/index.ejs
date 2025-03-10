@@ -16,7 +16,14 @@
     <a href="/message/create">Create Message</a>
     <% } %>
     <h1>Members Home Page</h1>
-
-    <p><%= messages %></p>
+    <ul>
+      <% for (let i = 0; i < messages.length; i++) { %>
+      <li>
+        <h3><%= messages[i].title %></h3>
+        <p><%= messages[i].content %></p>
+        <small>Posted by <%= messages[i].username %> on <%= messages[i].timestamp %> </small>
+      </li>
+      <% } %>
+    </ul>
   </body>
 </html>
