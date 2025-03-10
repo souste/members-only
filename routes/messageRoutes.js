@@ -6,3 +6,4 @@ const messageController = require("../controllers/messageController");
 module.exports = router;
 
 router.get("/create", messageController.createMessageGet);
+router.post("/create", messageController.createMessagePost);
